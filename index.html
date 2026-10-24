@@ -1,0 +1,205 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>One Month of Us ♥</title>
+<style>
+:root{--bg:#10070c;--panel:#210d16;--wine:#711c35;--red:#c34b68;--pink:#f0a5b7;--gold:#c6a16b;--text:#f9e8ec}
+*{box-sizing:border-box}
+body{margin:0;background:radial-gradient(ellipse at top,#401326,var(--bg) 65%);color:var(--text);font-family:Georgia,serif}
+button{font:inherit;cursor:pointer}
+.page{display:none;min-height:100vh;padding:35px 18px;align-items:center;justify-content:center;flex-direction:column;text-align:center;position:relative}
+.page.active{display:flex;animation:fade .4s}
+@keyframes fade{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+.top{position:absolute;top:20px;left:18px;right:18px;display:flex;justify-content:space-between;font:9px Arial;letter-spacing:2px;color:#c28b9d}
+.eyebrow{font:10px Arial;letter-spacing:4px;color:var(--pink);text-transform:uppercase}
+h1{font-size:clamp(40px,10vw,68px);font-weight:normal;line-height:1.05;margin:20px 0}
+h1 em,h2 em{color:var(--pink)}
+h2{font-size:clamp(27px,7vw,40px);font-weight:normal}
+p{line-height:1.8;color:#e4c5ce}
+.btn{background:var(--wine);border:1px solid var(--red);padding:13px 18px;color:white;margin:5px;box-shadow:0 5px 20px #0005}
+.btn:hover{background:#982943}
+.ghost{background:transparent;color:var(--pink);border-color:#633044;box-shadow:none}
+.rule{height:1px;width:65px;background:var(--gold);margin:18px auto}
+.seal{width:115px;height:115px;border-radius:50%;border:1px solid var(--gold);background:radial-gradient(circle,#641a32,#1b0911);color:var(--pink);font-size:40px;margin:25px;box-shadow:0 0 35px #a3294b33}
+.card{width:min(100%,550px);padding:25px;background:linear-gradient(145deg,#28101b,#170910);border:1px solid #713149;box-shadow:0 20px 60px #0005;text-align:left}
+.envelope{width:200px;height:125px;background:#711c35;border:1px solid #c15a75;margin:25px auto;display:grid;place-items:center;font-size:36px;cursor:pointer;position:relative}
+.envelope:before{content:"";position:absolute;top:0;border-left:100px solid transparent;border-right:100px solid transparent;border-top:70px solid #a63b57}
+.envelope span{z-index:2}
+.letter{white-space:pre-line;line-height:1.9;font-size:15px}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;width:min(100%,500px);margin:22px auto}
+.note{min-height:125px;background:#210d16;border:1px solid #713149;color:var(--text);padding:15px 8px}
+.note span{display:block;font-size:28px;color:var(--pink);margin-bottom:10px}
+.note small{display:block;font:9px Arial;letter-spacing:2px;color:#c28b9d;margin-bottom:7px}
+.coupon{width:min(100%,500px);padding:17px;margin:12px auto;background:#210d16;border:1px dashed #b65370;display:flex;gap:12px;align-items:center;justify-content:space-between;text-align:left}
+.coupon h3{font-weight:normal;margin:7px 0}
+.coupon p{font-size:12px;margin:0}
+.coupon button{background:transparent;border:1px solid var(--pink);color:var(--pink);padding:9px;font-size:11px}
+.coupon.done{border-color:var(--gold)}
+.pop{display:none;position:fixed;inset:0;z-index:10;background:#080308e8;align-items:center;justify-content:center;padding:20px}
+.pop.show{display:flex;animation:fade .3s}
+.popcard{background:#210d16;border:1px solid var(--red);padding:30px 22px;width:min(100%,380px);text-align:center;box-shadow:0 0 55px #bd315033}
+.popcard h2{color:var(--pink)}
+#cake{width:min(100%,320px);cursor:pointer}
+#slice{transition:transform .8s}
+.flame{fill:#f7c36e;animation:flicker .5s infinite alternate;transform-origin:center}
+@keyframes flicker{to{opacity:.6;transform:scale(.85)}}
+#stamp{display:none;border:1px solid var(--gold);color:var(--gold);padding:8px 12px;letter-spacing:3px;font:10px Arial;transform:rotate(-5deg)}
+.footer{font:9px Arial;letter-spacing:3px;color:#9f6c7c;margin-top:25px}
+@media(max-width:370px){.coupon{flex-direction:column;align-items:flex-start}.grid{gap:8px}}
+</style>
+</head>
+<body>
+
+<section class="page active" id="home">
+<div class="top"><span>VOL. I · US</span><span>PRIVATE EDITION ♥</span></div>
+<div style="font-size:58px;color:#f0a5b7">❦</div>
+<div class="eyebrow">A love story in progress</div>
+<h1>one month<br><em>of us.</em></h1>
+<div class="rule"></div>
+<p>A tiny corner of the universe, made for my favourite person.</p>
+<button class="seal" onclick="go('letterPage')">♥</button>
+<div class="eyebrow">Tap the heart to begin</div>
+<button class="btn" onclick="go('letterPage')">Open your story ↗</button>
+<button class="btn ghost" onclick="pop('IMPORTANT ANNOUNCEMENT','You have been selected for the position of my favourite human. Benefits include kisses, chaos, and absolutely no resignation option. ♡')">Important announcement</button>
+<div class="footer">MADE WITH TOO MANY FEELINGS</div>
+</section>
+
+<section class="page" id="letterPage">
+<div class="top"><span>CHAPTER 01</span><span>THE LETTER</span></div>
+<div class="eyebrow">A letter from your malkin</div>
+<h2>Dear <em>Patidev,</em></h2>
+<div class="envelope" onclick="openLetter()"><span>♥</span></div>
+<p id="hint" class="eyebrow">Sealed with a kiss</p>
+<div class="card" id="letterCard" style="display:none"><div class="letter" id="letterText"></div></div>
+<button class="btn" onclick="go('notes')">Continue the story →</button>
+<button class="btn ghost" onclick="go('home')">Back</button>
+</section>
+
+<section class="page" id="notes">
+<div class="top"><span>CHAPTER 02</span><span>FIVE LITTLE SECRETS</span></div>
+<div class="eyebrow">Open each one</div>
+<h2>Things I don't say<br><em>enough.</em></h2>
+<p>Five tiny notes. Zero normal behaviour.</p>
+<div class="grid" id="noteGrid"></div>
+<button class="btn" onclick="go('coupons')">Your rewards →</button>
+<button class="btn ghost" onclick="go('letterPage')">Back to letter</button>
+</section>
+
+<section class="page" id="coupons">
+<div class="top"><span>CHAPTER 03</span><span>BOYFRIEND BENEFITS</span></div>
+<div class="eyebrow">Officially issued to hubby</div>
+<h2>Your little<br><em>love coupons.</em></h2>
+<p>Tap redeem. Terms and conditions: I made them up.</p>
+<div id="couponList"></div>
+<button class="btn" onclick="go('cakePage')">Final chapter: cake 🎂</button>
+<button class="btn ghost" onclick="go('notes')">Back to notes</button>
+</section>
+
+<section class="page" id="cakePage">
+<div class="top"><span>CHAPTER 04</span><span>MAKE A WISH</span></div>
+<div class="eyebrow">One month down, many more pages</div>
+<h2>Make a wish,<br><em>my love.</em></h2>
+<p id="cakeHint">Tap the candles to blow them out. Then cut us a slice.</p>
+<svg id="cake" viewBox="0 0 320 270" onclick="cakeAction()">
+<ellipse cx="160" cy="237" rx="126" ry="16" fill="#080508"/>
+<path d="M53 143 Q160 125 267 143 L255 218 Q160 244 65 218Z" fill="#6d1932" stroke="#bc5b74" stroke-width="2"/>
+<ellipse cx="160" cy="143" rx="107" ry="27" fill="#f2c7cf" stroke="#c66b80" stroke-width="2"/>
+<path d="M58 148 Q72 171 88 151 T118 151 T148 151 T178 151 T208 151 T238 151 T262 148 L255 172 Q238 190 223 171 T193 171 T163 171 T133 171 T103 171 T73 171Z" fill="#fff0ed"/>
+<g id="slice"><path d="M107 114 L160 69 L213 114Z" fill="#c45a76" stroke="#f0b3c0" stroke-width="2"/><path d="M107 114 L107 140 L160 158 L160 130Z" fill="#e9a4b3"/><path d="M160 130 L213 114 L213 140 L160 158Z" fill="#8b2944"/></g>
+<g id="candles">
+<rect x="118" y="73" width="8" height="34" fill="#ffe7e8"/><rect x="156" y="56" width="8" height="34" fill="#ffe7e8"/><rect x="194" y="73" width="8" height="34" fill="#ffe7e8"/>
+<g><path class="flame" d="M122 70 C105 55 126 43 122 36 C141 54 136 65 122 70Z"/><path class="flame" d="M160 53 C143 38 164 25 160 19 C179 38 174 49 160 53Z"/><path class="flame" d="M198 70 C181 55 202 43 198 36 C217 54 212 65 198 70Z"/></g>
+</g>
+<text x="160" y="205" fill="#ffe7e8" font-size="15" text-anchor="middle" letter-spacing="2">ONE MONTH ♥</text>
+</svg>
+<div id="stamp">HAPPILY YOURS ♥</div>
+<div class="card" id="ending" style="display:none;text-align:center">
+<h2><em>Happy one month, hubby.</em></h2>
+<p>U are officially stuck with this overthinking, clingy, attitude-filled girl. Congratulations. 😁💗</p>
+<p>To our next chapter, and the one after that. ♡</p>
+</div>
+<button class="btn" id="cakeBtn" onclick="cakeAction()">Blow out the candles ✨</button>
+<button class="btn ghost" onclick="pop('P.S. I LOVE YOU','You are my favourite notification, my favourite distraction, and my favourite reason to smile at my phone like an idiot. 💗')">One last pop-up</button>
+<button class="btn ghost" onclick="go('home')">Read our story again ↺</button>
+<div class="footer">END OF CHAPTER ONE · NOT THE STORY</div>
+</section>
+
+<div class="pop" id="popup" onclick="if(event.target===this)closePop()">
+<div class="popcard"><button onclick="closePop()" style="float:right;background:none;border:0;color:#f0a5b7;font-size:22px">×</button>
+<div class="eyebrow">A message for you</div><h2 id="popTitle">Hey, you.</h2><p id="popText"></p>
+<button class="btn" onclick="closePop()">Okay, I adore you</button></div>
+</div>
+
+<script>
+const letter=`Even though I hate God sometimes, thinking nothing good will happen, but He gave me u 💗
+
+It's only been a month and u made me feel loved the most in such a long time. U became the person I want to talk to every second, spend every moment with.
+
+U have an unfair advantage of making me smile at ur replies every time, and at night blush 🤭
+
+I don't know how to express my feelings but I will try for u.
+
+Now ofc because of VERY professional overthinking I feel a little scared, but I know I don't need to be. I don't need us to be perfect or like some movie where everything magically works out. I want us to be just honest.
+
+And if u think I will leave u, then tell ur mind this woman's heart skips a beat whenever u are talking to me. U entered my heart, now u can't leave.
+
+I always hope u are never afraid to tell me ur real feelings or hardships.
+
+This first month was just a small chapter in our journey.
+
+So happy first month, patidev.
+
+I like u when ur clingy and shirtless 🤭
+
+${Array.from({length:18},(_,i)=>"mawh"+"h".repeat(3+i%7)+" 💋").join("\n")}
+
+~ Ur Malkin ♡`;
+
+function go(id){document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));document.getElementById(id).classList.add('active');window.scrollTo(0,0)}
+function pop(title,text){document.getElementById('popTitle').textContent=title;document.getElementById('popText').textContent=text;document.getElementById('popup').classList.add('show')}
+function closePop(){document.getElementById('popup').classList.remove('show')}
+function openLetter(){document.getElementById('letterCard').style.display='block';document.getElementById('letterText').textContent=letter;document.getElementById('hint').textContent='Opened with love ♥';pop('You have mail, hubby 💌','A very serious letter from your very unserious malkin. Read it properly. No skimming, sir.')}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closePop()});
+
+const notes=[
+['A LITTLE CONFESSION',"If someone told me a month ago that one person would become such a big part of my everyday life, I would've laughed. And then u happened. 💗"],
+['YOUR UNFAIR ADVANTAGE',"It's actually so annoying how u can make me smile at my screen just by replying. Like sir, who gave u this power???"],
+['A TINY PROMISE',"I can't promise that every day will be perfect, but I can promise to be there for u in every step."],
+['EXPOSING MYSELF','Not me thinking about our first meeting every day 😁😁'],
+['FOR MY PATIDEV','Happy one month, patidev. U are officially stuck with this overthinking, clingy, attitude-filled girl who likes u an unreasonable amount. Congratulations 😁💗']
+];
+notes.forEach((n,i)=>{let b=document.createElement('button');b.className='note';b.innerHTML='<span>✉</span><small>SECRET NOTE 0'+(i+1)+'</small>'+n[0];b.onclick=()=>pop(n[0],n[1]);document.getElementById('noteGrid').appendChild(b)});
+
+const coupons=[
+['01','THE ATTENTION TAX',"Congratulations hubby! You've officially claimed my undivided attention. No distractions, just me and you. Hehe 🤭"],
+['02','STUPID FIGHT CANCELLATION','One free cancellation for a stupid fight. Redeem when needed. ♡'],
+['03','MYSTERY REWARD','Congratulations u got a clingy wife with attitude she learnt from K-dramas 😁'],
+['04','THE FINAL BOSS ♛','Congratulations hubby, u have to watch unlimited K-dramas with me 😁💗']
+];
+coupons.forEach(c=>{
+let d=document.createElement('div');d.className='coupon';
+let info=document.createElement('div');info.innerHTML='<small style="color:#f0a5b7;letter-spacing:2px">LOVE COUPON · '+c[0]+'</small><h3>'+c[1]+'</h3><p>Issued with entirely excessive affection.</p>';
+let b=document.createElement('button');b.textContent='REDEEM ↗';
+b.onclick=()=>{if(d.classList.contains('done'))return;d.classList.add('done');b.textContent='CLAIMED ♥';pop('Coupon redeemed! ♥',c[2])};
+d.append(info,b);document.getElementById('couponList').appendChild(d)
+});
+let cakeStep=0;
+function cakeAction(){
+if(cakeStep===0){
+document.querySelectorAll('.flame').forEach(f=>f.style.display='none');
+document.getElementById('cakeHint').textContent='Wish made. Tap again to cut a slice. ♥';
+document.getElementById('cakeBtn').textContent='Cut us a slice 🍰';cakeStep=1;
+}else if(cakeStep===1){
+document.getElementById('slice').style.transform='translate(65px,-12px) rotate(12deg)';
+document.getElementById('ending').style.display='block';document.getElementById('stamp').style.display='inline-block';
+document.getElementById('cakeHint').textContent='One slice for you, one for me. ♡';
+document.getElementById('cakeBtn').textContent='Our story continues ♥';cakeStep=2;
+}else{pop('TO BE CONTINUED…','One month down. More memories to make, more silly fights to solve, more reasons to choose each other. Happy first month, patidev. 💗')}
+}
+</script>
+</body>
+  </html>
+  
